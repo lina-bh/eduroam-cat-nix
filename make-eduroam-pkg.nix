@@ -28,7 +28,7 @@ pkgs.stdenvNoCC.mkDerivation {
   ];
   installPhase = ''
     mkdir -p $out/bin
-    install -m 0777 $src $out/bin/${pname}.py
+    install -m 0755 $src $out/bin/${pname}.py
   '';
   meta.mainProgram = "${pname}.py";
 }
