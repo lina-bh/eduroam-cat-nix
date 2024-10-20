@@ -11,20 +11,26 @@
       flake-utils,
     }:
     let
-      pkgs = import nixpkgs { system = "x86_64-linux"; };
+      inherit (flake-utils.lib) eachSystem system;
     in
-    flake-utils.lib.eachSystem
-      (with flake-utils.lib.system; [
+    eachSystem
+      (with system; [
         x86_64-linux
         aarch64-linux
       ])
-      (system: {
-        packages.eduroam-linux-UoG = import ./make-eduroam-pkg.nix {
-          inherit pkgs;
-          profile = 574;
-          institution-name = "UoG";
-          version = "1";
-          hash = "sha256-4fHkfknkjIOCt0pp3RLqDd197jk4RTPWIVZI1t5Ou/4=";
-        };
-      });
+      (
+        system:
+        let
+          pkgs = import nixpkgs { inherit system; };
+        in
+        {
+          packages.eduroam-linux-UoG = import ./make-eduroam-pkg.nix {
+            inherit pkgs;
+            profile = 574;
+            institution-name = "UoG";
+            version = "1";
+            hash = "sha256-4fHkfknkjIOCt0pp3RLqDd197jk4RTPWIVZI1t5Ou/4=";
+          };
+        }
+      );
 }
