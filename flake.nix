@@ -29,7 +29,7 @@
             profile = 574;
             institution-name = "UoG";
             version = "1";
-            hash = "sha256-4fHkfknkjIOCt0pp3RLqDd197jk4RTPWIVZI1t5Ou/4=";
+            hash = "sha256-28MQsSGBiWVDfBh8x4QncegU1KURHLfeW7cumZqth1g=";
           };
         }
       );
